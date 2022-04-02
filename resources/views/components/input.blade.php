@@ -1,4 +1,4 @@
-<div class="form-floating mb-3">
+<div class="form-floating mb-3 ">
     <input
       name="{{$name}}"
       type="{{$type}}"

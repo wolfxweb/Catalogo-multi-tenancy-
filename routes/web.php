@@ -36,7 +36,8 @@ Route::controller(ProdutoController::class)
         ->name('produto.')
         ->group(function () {
             Route::get('/', 'index')->name('index');
-            
+            Route::get('/cadastro', 'create')->name('create');
+
         });
 
 
