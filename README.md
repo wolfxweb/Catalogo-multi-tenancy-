@@ -6,7 +6,7 @@ Sistema multi tenancy single data base<br><br>
 &nbsp;&nbsp;&nbsp;      -> Analizar a reatividade do livewire com parado com VUE .<br>
 
 -> Funcionalidades <br>
-&nbsp;&nbsp;&nbsp;    -> Cadastro catalogo (cliente)<br>
+&nbsp;&nbsp;&nbsp;    -> Cadastro catalogo <br>
 &nbsp;&nbsp;&nbsp;     -> Categoria <br>
 &nbsp;&nbsp;&nbsp;     -> Produto<br>
 &nbsp;&nbsp;&nbsp;     -> Carrinho compra<br>
