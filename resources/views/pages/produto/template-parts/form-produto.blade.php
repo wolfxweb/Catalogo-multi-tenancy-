@@ -1,4 +1,4 @@
-<form action="{{$rota}}" method="POST">
+<form action="{{ route($rota)}}" method="POST">
     @csrf
 
     <div class="m-2 ">
@@ -16,7 +16,7 @@
                 'value' => $input['value']? $input['value']:''
             ])
          @endforeach
-         @include('components.select',['itens'=>$categorias])
+         @include('components.select',['itens'=>$categorias,'name'=>'categoria_id'])
          @include('components.upload')
          @include('components.radio-ativo-inativo',['checked'=>'1'])
 

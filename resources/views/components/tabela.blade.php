@@ -3,11 +3,11 @@
         <thead>
             <tr>
                 {{$thead}}
-
             </tr>
         </thead>
         <tbody>
-               {{$tbody}}
+            {{$tbody}}
         </tbody>
-        {{$paginacao}}
+    </table>
+     {{$paginacao}}
 </div>

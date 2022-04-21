@@ -1,13 +1,8 @@
 @php
 $inputsText = [
-    'nome' => [
-        'name' => 'nome',
-        'tilulo' => 'Nome ',
-        'type' => 'text',
-        'value' => 'sss',
-    ],
+
     'descrição' => [
-        'name' => 'descrição',
+        'name' => 'descricao',
         'tilulo' => 'Descrição ',
         'type' => 'text',
         'value' => '',
@@ -52,8 +47,6 @@ $inputsText = [
 @endphp
 
 
-
-
 @component('components.main', [
     'classCard' => 'col-sm-12',
     'color' => 'bg-danger
@@ -62,26 +55,10 @@ $inputsText = [
     ])
     @component('pages.produto.template-parts.form-produto',
      [
-         'rota' => '#',
-     'bntTitulo' => 'Cadastrar',
-     'inputsText' =>$inputsText,
-     'categorias'=>$categorias])
+         'rota' => 'produto.store',
+         'bntTitulo' => 'Cadastrar',
+         'inputsText' =>$inputsText,
+         'categorias'=>$categorias])
     @endcomponent
 @endcomponent
-<!--
-    nome input text
-    descrição input text
-    preco input text
-    preco_promocinal input text
-    peso input text
-    largura input text
-    altura input text
-    profundidade input text
 
-     categoria  select box
-
-
-    img  input img
-    status input radio
-
---->
