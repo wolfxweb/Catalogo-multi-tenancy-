@@ -1,4 +1,4 @@
-<form action="{{ route($rota)}}" method="POST">
+<form action="{{ route($rota)}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="m-2 ">

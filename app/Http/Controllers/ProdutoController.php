@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Produto;
+use App\Tenant\ManagerTenant;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -41,17 +42,33 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
 
+      $newProduto = $request->all();
+  
+      if($request->hasFile('img')){
+        $request->validate([
+            'img'=>['mimes:jpeg,png'],
+        ]);
+        $tenant = app(ManagerTenant::class);
+        $tenantNome = $tenant->tenant();
+        $file = $request->file('img');
+        $fileNome = date('YmdHi')."-". $file->getClientOriginalName();
+
+        $newImg = $file->move(public_path('public/image/'.$tenantNome->nome),$fileNome);
+        $newProduto['img'] =$newImg->getLinkTarget();
+
+      }
         $request->validate([
             'nome'=>['required','min:3'],
             'descricao'=>['required','min:3'],
             'preco'=>['required'],
             'categoria_id'=>['required']
         ]);
-        Produto::create($request->all());
+
+        Produto::create($newProduto);
 
         $produtos = Produto::paginate(10);
         return view('pages.produto.home', compact('produtos'));
-     //  dd($request->all());
+
     }
 
     /**
