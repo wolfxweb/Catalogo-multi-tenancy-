@@ -43,7 +43,7 @@ class ProdutoController extends Controller
     {
 
       $newProduto = $request->all();
-  
+
       if($request->hasFile('img')){
         $request->validate([
             'img'=>['mimes:jpeg,png'],
@@ -79,7 +79,8 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+
+
     }
 
     /**
@@ -88,9 +89,12 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Produto $produto)
     {
-        //
+
+        $categorias = Categoria::all();
+        return view('pages.produto.edit',['categorias'=>$categorias , 'produto'=> $produto]);
+
     }
 
     /**

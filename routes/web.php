@@ -39,6 +39,7 @@ Route::controller(ProdutoController::class)
             Route::get('/cadastro', 'create')->name('create');
             Route::post('/cadastro', 'store')->name('store');
             Route::delete('/{produto}', 'destroy')->name('destroy');
+            Route::get('/{produto}/edit', 'edit')->name('edit');
 
         });
 

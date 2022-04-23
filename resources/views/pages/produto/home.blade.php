@@ -29,8 +29,8 @@
                                     <div class="btn-group float-end" role="group">
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#modalDeletar{{$produto->id}}">Deletar</button>
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#modalAlterar{{$produto->id}}">Alterar</button>
+
+                                            <a  type="button" class="btn btn-success" href="{{ route('produto.edit',['produto'=> $produto->id]) }}"> Editar</a>
                                     </div>
                                     @include(
                                         'pages._template-parts.modal-delatar',[

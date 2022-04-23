@@ -2,12 +2,7 @@
     @csrf
 
     <div class="m-2 ">
-        @include('components.input', [
-            'name' => 'nome',
-            'tilulo' => 'Nome Produto',
-            'type' => 'text',
-            'value' => ''
-        ])
+
         @foreach ( $inputsText as   $input)
             @include('components.input', [
                 'name' => $input['name'],

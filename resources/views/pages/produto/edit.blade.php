@@ -1,52 +1,55 @@
+
+
+{{$produto}}
 @php
 $inputsText = [
     'nome' => [
         'name' => 'nome',
         'tilulo' => 'Nome Produto',
         'type' => 'text',
-        'value' => '',
+        'value' => $produto->nome,
     ],
     'descrição' => [
         'name' => 'descricao',
         'tilulo' => 'Descrição ',
         'type' => 'text',
-        'value' => '',
+        'value' => $produto->descricao,
     ],
     'preco' => [
         'name' => 'preco',
         'tilulo' => 'Preco ',
         'type' => 'text',
-        'value' => '',
+        'value' =>$produto->preco,
     ],
     'preco_promocinal' => [
         'name' => 'preco_promocinal',
         'tilulo' => 'Preco promocional ',
         'type' => 'text',
-        'value' => '',
+        'value' =>$produto->preco_promocinal,
     ],
     'peso' => [
         'name' => 'peso',
         'tilulo' => 'Peso',
         'type' => 'text',
-        'value' => '',
+        'value' => $produto->peso,
     ],
     'largura' => [
         'name' => 'largura',
         'tilulo' => 'Largura',
         'type' => 'text',
-        'value' => '',
+        'value' =>$produto->largura,
     ],
     'altura' => [
         'name' => 'altura',
         'tilulo' => 'Altura',
         'type' => 'text',
-        'value' => '',
+        'value' =>$produto->altura,
     ],
     'profundidade' => [
         'name' => 'profundidade',
         'tilulo' => 'Profundidade',
         'type' => 'text',
-        'value' => '',
+        'value' => $produto->profundidade,
     ],
 ];
 @endphp
@@ -56,14 +59,15 @@ $inputsText = [
     'classCard' => 'col-sm-12',
     'color' => 'bg-danger
     text-white',
-    'titulo' => 'Cadastro Produto',
+    'titulo' => 'Edição Produto',
     ])
     @component('pages.produto.template-parts.form-produto',
      [
          'rota' => 'produto.store',
-         'bntTitulo' => 'Cadastrar',
+         'bntTitulo' => 'Atualizar',
          'inputsText' =>$inputsText,
          'categorias'=>$categorias])
     @endcomponent
 @endcomponent
+
 
