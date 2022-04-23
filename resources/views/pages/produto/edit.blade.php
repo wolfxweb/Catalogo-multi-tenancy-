@@ -63,7 +63,10 @@ $inputsText = [
     ])
     @component('pages.produto.template-parts.form-produto',
      [
-         'rota' => 'produto.store',
+         'rota' => 'produto.update',
+         'id'=>$produto->id,
+         'categoriaSelecionada'=> $produto->categoria_id,
+         'checked'=> $produto->status,
          'bntTitulo' => 'Atualizar',
          'inputsText' =>$inputsText,
          'categorias'=>$categorias])

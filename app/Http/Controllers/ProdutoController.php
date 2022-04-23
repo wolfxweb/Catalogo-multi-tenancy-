@@ -104,9 +104,18 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request , Produto $produto)
     {
-        //
+
+        $request->validate([
+            'nome'=>['required','min:3'],
+            'descricao'=>['required','min:3'],
+            'preco'=>['required'],
+            'categoria_id'=>['required']
+        ]);
+        $produto->update($request->all());
+        $produtos = Produto::paginate(10);
+        return view('pages.produto.home', compact('produtos'));
     }
 
     /**

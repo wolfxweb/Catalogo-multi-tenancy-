@@ -21,7 +21,7 @@
                             <tr>
                                 <th>{{ $produto->id }}</th>
                                 <td>{{ $produto->nome }}</td>
-                                <td>{{ $produto->descrição }}</td>
+                                <td>{{ $produto->descricao }}</td>
                                 <td>{{ $produto->preco }}</td>
                                 <td>{{ $produto->preco_promocinal }}</td>
                                 <td>{{ $produto->status?"Ativo":"Inativo"}}</td>
