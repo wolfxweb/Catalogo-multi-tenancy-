@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Produto;
 use App\Tenant\ManagerTenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdutoController extends Controller
 {
@@ -54,7 +55,7 @@ class ProdutoController extends Controller
         $fileNome = date('YmdHi')."-". $file->getClientOriginalName();
 
         $newImg = $file->move(public_path('public/image/'.$tenantNome->nome),$fileNome);
-        $newProduto['img'] =$newImg->getLinkTarget();
+        $newProduto['img'] = $tenantNome->nome.'/'.$fileNome;
 
       }
         $request->validate([
@@ -92,6 +93,7 @@ class ProdutoController extends Controller
     public function edit(Produto $produto)
     {
 
+
         $categorias = Categoria::all();
         return view('pages.produto.edit',['categorias'=>$categorias , 'produto'=> $produto]);
 
@@ -107,15 +109,37 @@ class ProdutoController extends Controller
     public function update(Request $request , Produto $produto)
     {
 
+
+
+        $produtoUpdate = $request->all();
+
         $request->validate([
             'nome'=>['required','min:3'],
             'descricao'=>['required','min:3'],
             'preco'=>['required'],
             'categoria_id'=>['required']
         ]);
-        $produto->update($request->all());
-        $produtos = Produto::paginate(10);
-        return view('pages.produto.home', compact('produtos'));
+
+
+
+        if($request->hasFile('img')){
+            $request->validate([
+                'img'=>['mimes:jpeg,png'],
+            ]);
+            $tenant = app(ManagerTenant::class);
+            $tenantNome = $tenant->tenant();
+            $file = $request->file('img');
+            $fileNome = date('YmdHi')."-". $file->getClientOriginalName();
+
+            $newImg = $file->move(public_path('public/image/'.$tenantNome->nome),$fileNome);
+            $produtoUpdate['img'] = $tenantNome->nome.'/'.$fileNome;
+
+        }
+
+        $produto->update($produtoUpdate);
+        return redirect()->route('produto.index');
+
+
     }
 
     /**

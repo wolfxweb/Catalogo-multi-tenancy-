@@ -71,6 +71,11 @@ $inputsText = [
          'inputsText' =>$inputsText,
          'categorias'=>$categorias])
     @endcomponent
+    <hr>
+    <figure class="figure">
+        <figcaption class="figure-capiton mb-3"> Imagem cadastrada </figcaption>
+        <img src="/public/image/{{$produto->img}}" class="figure-img img-fluid " >
+    </figure>
 @endcomponent
 
 
