@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Tenant\ManagerTenant;
+use App\Traits\Upload;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProdutoController extends Controller
 {
+
+    use Upload;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-
         $produtos = Produto::paginate(10);
         return view('pages.produto.home', compact('produtos'));
     }
@@ -49,16 +53,9 @@ class ProdutoController extends Controller
         $request->validate([
             'img'=>['mimes:jpeg,png'],
         ]);
-        $tenant = app(ManagerTenant::class);
-        $tenantNome = $tenant->tenant();
-        $file = $request->file('img');
-        $fileNome = date('YmdHi')."-". $file->getClientOriginalName();
-
-        $newImg = $file->move(public_path('public/image/'.$tenantNome->nome),$fileNome);
-        $newProduto['img'] = $tenantNome->nome.'/'.$fileNome;
-
+        $newProduto['img'] =  $this->uploadImagem($request->file('img'));
       }
-        $request->validate([
+       $request->validate([
             'nome'=>['required','min:3'],
             'descricao'=>['required','min:3'],
             'preco'=>['required'],
@@ -66,9 +63,7 @@ class ProdutoController extends Controller
         ]);
 
         Produto::create($newProduto);
-
-        $produtos = Produto::paginate(10);
-        return view('pages.produto.home', compact('produtos'));
+        return redirect()->route('produto.index');
 
     }
 
@@ -126,13 +121,7 @@ class ProdutoController extends Controller
             $request->validate([
                 'img'=>['mimes:jpeg,png'],
             ]);
-            $tenant = app(ManagerTenant::class);
-            $tenantNome = $tenant->tenant();
-            $file = $request->file('img');
-            $fileNome = date('YmdHi')."-". $file->getClientOriginalName();
-
-            $newImg = $file->move(public_path('public/image/'.$tenantNome->nome),$fileNome);
-            $produtoUpdate['img'] = $tenantNome->nome.'/'.$fileNome;
+            $produtoUpdate['img'] = $this->uploadImagem($request->file('img'));
 
         }
 
@@ -151,5 +140,17 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public  function search(Request $request){
+
+        if($request['search']){
+            $produtos = Produto::where('nome','like',$request['search'])->paginate(10);
+        }else{
+            $produtos = Produto::paginate(10);
+        }
+     ///   dd($produtos);
+        return view('index', compact('produtos'));
+       //
     }
 }

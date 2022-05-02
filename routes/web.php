@@ -4,6 +4,8 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\TenantController;
+use App\Models\Categoria;
+use App\Models\Produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
@@ -30,6 +29,13 @@ Route::view('tenant-404','error.tenant-404')->name('tenant.404');
 
 Route::resource('tenant', TenantController::class);
 Route::resource('categoria', CategoriaController::class);
+Route::get('/', function () {
+    $produtos =Produto::paginate(10);
+    return view('index', compact('produtos'));
+
+});
+
+Route::post('/', [App\Http\Controllers\ProdutoController::class, 'search'])->name('search');
 
 Route::controller(ProdutoController::class)
         ->prefix('/produto')
