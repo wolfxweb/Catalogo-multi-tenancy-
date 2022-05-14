@@ -88,14 +88,18 @@
                                                     <th></th>
                                                     <th></th>
                                                     <th>Valor Total</th>
+                                                    
                                                     @isset($totalPedido)
                                                         <th>R$ {{number_format($totalPedido,2)}}</th>
                                                     @endisset
+
                                                     @empty($totalPedido)
                                                          <th>R$ 0,00</th>
                                                     @endempty
 
-                                                    <th class="d-grid gp-2 mx-auto"><a type="button" class=" btn btn-primary btn-sm">Comprar</a></th>
+                                                    <th class="d-grid gp-2 mx-auto">
+                                                        <a   href="{{ route('checkoutCart') }}" type="button" class=" btn btn-primary btn-sm">Comprar</a>
+                                                    </th>
                                                 </tr>
                                               </tfoot>
                                               </table>

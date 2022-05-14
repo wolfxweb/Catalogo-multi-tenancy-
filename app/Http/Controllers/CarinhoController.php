@@ -33,37 +33,51 @@ class CarinhoController extends Controller
     public function ajustCart($item, $acao)
     {
 
+
+
         $msg = 'Produto adicioando com sucesso';
 
         switch ($acao) {
 
             case 'E':
-                session()->forget('cart.' . $item);
-                $this->msg = 'Excluido com sucesso';
+                $this->excluirItem($item);
+                //    session()->forget('cart.' . $item);
+                //    $this->msg = 'Excluido com sucesso';
+
                 break;
 
             case 'A':
 
-                $produto  = session()->get('cart.' . $item);
-                $produto['qtd']++;
-                session()->forget('cart' . $produto['id']);
-                session()->put('cart.' . $produto['id'], $produto);
-                $this->msg = 'Produto adicioando com sucesso';
+                    $produto  = session()->get('cart.' . $item);
+                    $produto['qtd']++;
+                    $this->quantidadeCart($item , $produto);
+                    /*
+                        session()->forget('cart' . $produto['id']);
+                        session()->put('cart.' . $produto['id'], $produto);
+                        $this->msg = 'Produto atualizado com sucesso';
+                    */
+
                 break;
 
             case 'D':
+
 
                 $produto  = session()->get('cart.' . $item);
 
                 if ($produto['qtd'] > 1) {
                     $produto['qtd']--;
-                    session()->forget('cart' . $produto['id']);
-                    session()->put('cart.' . $produto['id'], $produto);
-                    $this->msg = 'Produto diminuido com sucesso';
+                    $this->quantidadeCart($item , $produto);
+                    /*
+                        session()->forget('cart' . $produto['id']);
+                        session()->put('cart.' . $produto['id'], $produto);
+                        $this->msg = 'Produto diminuido com sucesso';
+                    */
                 } else {
-                    $produto  = session()->get('cart.' . $item);
-                    session()->forget('cart.' . $item);
-                    $this->msg = 'Excluido com sucesso';
+
+                    $this->excluirItem($item);
+                //  session()->forget('cart.' . $item);
+                //  $this->msg = 'Excluido com sucesso';
+
                 }
 
                 break;
@@ -74,4 +88,25 @@ class CarinhoController extends Controller
         }
         return redirect('/')->with('status', $this->msg);
     }
+
+    private function quantidadeCart($item , $produto){
+        session()->forget('cart' . $item);
+        session()->put('cart.' . $item, $produto);
+        $this->msg = 'Produto atualizado com sucesso';
+    }
+
+    private function excluirItem($item){
+        session()->forget('cart.' . $item);
+        $this->msg = 'Excluido com sucesso';
+    }
+
+
+
+    public  function checkoutCart(){
+
+        dd("criar página de checout");
+    }
+
+
+
 }

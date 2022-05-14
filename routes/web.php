@@ -43,6 +43,10 @@ Route::post('/addCart', [App\Http\Controllers\CarinhoController::class, 'addCart
 //Rota gerenciar itens do carrinho
 Route::get('/addCart/{itemId}/{acao}', [App\Http\Controllers\CarinhoController::class, 'ajustCart'])->name('ajustCart');
 
+//Checkout dos itens da session
+Route::get('/checkoutCart', [App\Http\Controllers\CarinhoController::class, 'checkoutCart'])->name('checkoutCart');
+
+
 //Grupo de rotas produto
 Route::controller(ProdutoController::class)
         ->prefix('/produto')
