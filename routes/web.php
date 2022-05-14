@@ -37,6 +37,13 @@ Route::get('/', function () {
 
 Route::post('/', [App\Http\Controllers\ProdutoController::class, 'search'])->name('search');
 
+//Rota adicinonar item carrinho
+Route::post('/addCart', [App\Http\Controllers\CarinhoController::class, 'addCart'])->name('addCart');
+
+//Rota gerenciar itens do carrinho
+Route::get('/addCart/{itemId}/{acao}', [App\Http\Controllers\CarinhoController::class, 'ajustCart'])->name('ajustCart');
+
+//Grupo de rotas produto
 Route::controller(ProdutoController::class)
         ->prefix('/produto')
         ->name('produto.')
@@ -47,8 +54,6 @@ Route::controller(ProdutoController::class)
             Route::delete('/{produto}', 'destroy')->name('destroy');
             Route::get('/{produto}/edit', 'edit')->name('edit');
             Route::put('/{produto}','update')->name('update');
-
-
         });
 
 
