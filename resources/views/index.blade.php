@@ -16,7 +16,7 @@
                 $totalPedido = 0;
                 $qtdPredido =0;
                 foreach ($sessionProdutos  as $key => $value) {
-                    $totalPedido += ($value['preco']*$value['qtd']);
+                    $totalPedido += ( (float)$value['preco']*(float)$value['qtd']);
                     $qtdPredido +=$value['qtd'];
                 }
 
@@ -69,8 +69,8 @@
 
                                                         <th>{{$sessionProduto['nome']}}</th>
                                                         <th>{{$sessionProduto['qtd']}}</th>
-                                                        <th>R$ {{ number_format( $sessionProduto['preco'], 2) }}</th>
-                                                        <th>R$ {{ number_format($sessionProduto['preco']*$sessionProduto['qtd'],2)}}</th>
+                                                        <th>R$ {{ number_format( (float)$sessionProduto['preco'], 2) }}</th>
+                                                        <th>R$ {{ number_format((float)$sessionProduto['preco']*(float)$sessionProduto['qtd'],2)}}</th>
                                                         <th>
                                                           <div class="btn-group btn-group-sm " role="group" aria-label="Basic mixed styles example">
                                                               <a href="{{ route('ajustCart',['itemId'=>$sessionProduto['id'],'acao'=>'E']) }}"  type="button" class="btn btn-danger "><i class="bi bi-cart-x"></i></a>
@@ -88,7 +88,7 @@
                                                     <th></th>
                                                     <th></th>
                                                     <th>Valor Total</th>
-                                                    
+
                                                     @isset($totalPedido)
                                                         <th>R$ {{number_format($totalPedido,2)}}</th>
                                                     @endisset

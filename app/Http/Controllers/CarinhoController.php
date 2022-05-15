@@ -99,14 +99,13 @@ class CarinhoController extends Controller
         session()->forget('cart.' . $item);
         $this->msg = 'Excluido com sucesso';
     }
-
-
-
+    
     public  function checkoutCart(){
-
-        dd("criar página de checout");
+        return view('pages.checkout.checkout');
+      //  dd("criar página de checout");
     }
 
 
 
 }
+

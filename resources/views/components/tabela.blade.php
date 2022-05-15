@@ -8,6 +8,9 @@
         <tbody>
             {{$tbody}}
         </tbody>
+        <tfoot>
+            {{$tfoot??""}} <!-- ternario normal -->
+        </tfoot>
     </table>
-     {{$paginacao}}
+     {{$paginacao??""}} <!-- ternario curto -->
 </div>

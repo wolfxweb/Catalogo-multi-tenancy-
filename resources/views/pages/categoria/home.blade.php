@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@php
-phpinfo();
-@endphp
+
 @section('content')
     @component('components.container')
         @component('components.card', [

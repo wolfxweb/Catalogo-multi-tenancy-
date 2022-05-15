@@ -46,6 +46,12 @@ Route::get('/addCart/{itemId}/{acao}', [App\Http\Controllers\CarinhoController::
 //Checkout dos itens da session
 Route::get('/checkoutCart', [App\Http\Controllers\CarinhoController::class, 'checkoutCart'])->name('checkoutCart');
 
+//Salva o pedido no banco de dados
+Route::post('/pedido', [App\Http\Controllers\PedidoController::class, 'store'])->name('pedido.store');
+
+//lista os pedidos do banco de dados
+Route::get('/pedido', [App\Http\Controllers\PedidoController::class, 'index'])->name('pedido.index');
+
 
 //Grupo de rotas produto
 Route::controller(ProdutoController::class)
