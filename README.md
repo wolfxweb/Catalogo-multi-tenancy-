@@ -13,4 +13,7 @@ Sistema multi tenancy single data base<br><br>
 &nbsp;&nbsp;&nbsp;     -> Area cliente<br>
 &nbsp;&nbsp;&nbsp;     -> Area adminstrativa do catalogo<br>
 &nbsp;&nbsp;&nbsp;     -> Area adminstrativa da aplicação<br>
-    
+  
+-> Todo o desenvolvimento desta aplicação foi gravado os videos podem ser acessado no youtube
+  <br> 
+-> https://www.youtube.com/watch?v=tcu7TB875go&list=PLS6NBxSSF842qQ1ECgdV8rkPwXMimOoIJ
