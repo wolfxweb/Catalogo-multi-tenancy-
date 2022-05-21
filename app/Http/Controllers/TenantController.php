@@ -42,6 +42,8 @@ class TenantController extends Controller
             'sub_dominio'=>['required','unique:tenants','min:3'],
             'nome'=>['required','unique:tenants','min:3']
         ]);
+        // Ajustar para adicionar o nivel de usuário tenant
+        /** Para o acesso master vamos criar uma usuário paradão ao executrar as migrate  administrador*/
         $tenant = Tenant::create($request->all());
         return view('pages.tenant.cadastro-sucesso',[
             'url'=>'http://'.$tenant->sub_dominio.'.localhost:8000',
@@ -119,7 +121,7 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
- 
+
         /**outra validações
          * não pode deletar se tiver produtos ou categorias.
          */
