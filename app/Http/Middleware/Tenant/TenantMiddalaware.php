@@ -21,13 +21,10 @@ class TenantMiddalaware
         $urlTenant = app(ManagerTenant::class);
 
         $tenant = $urlTenant->tenant();
-        dd( $tenant );
+       
         if(!$tenant && $request->url() != route('tenant.404')){
             return redirect()->route('tenant.404');
         }
-
-        dd($tenant);
-
         return $next($request);
     }
 }
