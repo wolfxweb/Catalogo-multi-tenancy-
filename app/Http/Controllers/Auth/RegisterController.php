@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\NiveAcessoUser;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Tenant\ManagerTenant;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,10 +66,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $userCriado = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $tenantId =  app(ManagerTenant::class)->tenantId();
+       // $tenant = app(ManagerTenant::class)->tenantId();
+        $userComNivelAcesso = NiveAcessoUser::create([
+            'nivel_acesso' => 'cliente',
+          //'tenant_id' => $data['email'],
+            'users_id' => $userCriado->id
+        ]);
+
+        return $userCriado;
+    
+
+        /*
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        */
     }
 }

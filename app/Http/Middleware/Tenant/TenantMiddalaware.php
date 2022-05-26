@@ -20,7 +20,9 @@ class TenantMiddalaware
         //gobal
         $urlTenant = app(ManagerTenant::class);
 
+        
         $tenant = $urlTenant->tenant();
+       
        
         if(!$tenant && $request->url() != route('tenant.404')){
             return redirect()->route('tenant.404');
