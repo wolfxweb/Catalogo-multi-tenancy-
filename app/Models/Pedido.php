@@ -22,5 +22,8 @@ class Pedido extends Model
         'password',
     ];
 
+    public function userPedidos(){
+        return $this->belongsTo(User::class);
+    }
 
 }

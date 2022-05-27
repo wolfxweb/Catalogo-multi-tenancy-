@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Traits\user\userTrait;
 
 class HomeController extends Controller
 {
@@ -13,9 +16,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        
         $this->middleware('auth');
     }
 
+    use userTrait;
     /**
      * Show the application dashboard.
      *
@@ -23,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       
+        $pedidos = $this->userPedidos();
+       
+        return view('home', compact('pedidos'));
     }
 }
