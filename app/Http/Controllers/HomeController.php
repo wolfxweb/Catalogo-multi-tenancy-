@@ -28,9 +28,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-       
-        $pedidos = $this->userPedidos();
-       
+        
+        $pedidos = $this->userPedidosPaginadoAberto();
         return view('home', compact('pedidos'));
     }
 }
