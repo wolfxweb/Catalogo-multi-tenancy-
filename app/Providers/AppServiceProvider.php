@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use App\Tenant\ManagerTenant;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
+use App\Traits\user\userTrait;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use userTrait;
     /**
      * Register any application services.
      *
@@ -25,5 +29,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        Blade::if('tenantAdm', function(){
+            $tenant = app(ManagerTenant::class);
+            return $tenant->isDominioPrinicipal();
+        });
+        Blade::if('tenant', function(){
+            $tenant = app(ManagerTenant::class);
+            return !$tenant->isDominioPrinicipal();
+        });
+        Blade::if('nivelUsuarioLogado', function($nivel = "cliente"){
+            $nivelAUX =  $this->niverAcessoUsuarioLogado();
+            return  $nivelAUX == $nivel;
+        });
+
+
     }
 }

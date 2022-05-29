@@ -40,6 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+                        @tenant
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -53,12 +54,14 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/')  }}">{{ __('Loja') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Area cliente') }}</a>
-                        </li>
+                        @nivelUsuarioLogado('cliente')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/')  }}">{{ __('Loja') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Area cliente') }}</a>
+                            </li>
+                        @endnivelUsuarioLogado('cliente')
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -77,6 +80,13 @@
                                 </div>
                             </li>
                         @endguest
+                      
+                        @endtenant
+                        @tenantAdm
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('tenant.create') }}">{{ __('Cadastre-se') }}</a>
+                            </li>
+                        @endtenantAdm
                     </ul>
                 </div>
             </div>

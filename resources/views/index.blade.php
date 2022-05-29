@@ -35,9 +35,8 @@
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{$qtdPredido}}</span>
                         </button>
                         @else
-                        <a class="navbar-brand" href="#"></a>
+                           <a class="navbar-brand" href="#"></a>
                         @endif
-                
                         <!-- Modal Carrinho compra -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">

@@ -24,5 +24,10 @@ class ManagerTenant {
      
        return $tenant->id;
   }
+  public function isDominioPrinicipal(){
+    $subdominio = $this->subDominio();
+    $auxSubDominio = config('tenant.subdominio_master');
+    return  $subdominio ==  $auxSubDominio;
+}
 
 }

@@ -46,7 +46,7 @@ class TenantController extends Controller
         /** Para o acesso master vamos criar uma usuário paradão ao executrar as migrate  administrador*/
         $tenant = Tenant::create($request->all());
         return view('pages.tenant.cadastro-sucesso',[
-            'url'=>'http://'.$tenant->sub_dominio.'.localhost:8000',
+            'url'=>'http://'.$tenant->sub_dominio.'.localhost:8000/register',
             'nome'=>$tenant->nome,
             'tenant_id'=>$tenant->id
         ]);

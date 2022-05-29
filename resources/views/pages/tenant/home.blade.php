@@ -2,7 +2,7 @@
 
 @section('content')
     @component('components.container')
-        @component('components.card', ['titulo' => 'Lista Tenants', 'classCard' => 'col-sm-12', 'color' => 'bg-danger
+        @component('components.card', ['titulo' => 'Lista Tenants', 'classCard' => 'col-sm-12', 'color' => 'bg-primary
             text-white'])
             <div>
 

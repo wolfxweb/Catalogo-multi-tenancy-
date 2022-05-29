@@ -8,8 +8,10 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Tenant\ManagerTenant;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\user\userTrait;
 
 class RegisterController extends Controller
 {
@@ -25,7 +27,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    use userTrait;
     /**
      * Where to redirect users after registration.
      *
@@ -66,28 +68,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      
+      
+        $nivelAcesso = 'cliente';
+        $userAdmin = $this->verificarSeExisteAdminCadastrado();
+        if( $userAdmin <1){
+            $nivelAcesso ='admin';
+        }
         $userCriado = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $tenantId =  app(ManagerTenant::class)->tenantId();
-       // $tenant = app(ManagerTenant::class)->tenantId();
-        $userComNivelAcesso = NiveAcessoUser::create([
-            'nivel_acesso' => 'cliente',
+        NiveAcessoUser::create([
+            'nivel_acesso' => $nivelAcesso,
           //'tenant_id' => $data['email'],
             'users_id' => $userCriado->id
         ]);
-
+      
         return $userCriado;
-    
 
-        /*
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-        */
     }
 }

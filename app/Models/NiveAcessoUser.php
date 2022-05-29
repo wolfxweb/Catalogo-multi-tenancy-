@@ -15,6 +15,7 @@ class NiveAcessoUser extends Model
         static::addGlobalScope(new TenantScope);
         static::observe( new TenantObserver);
     }
+    
     use HasFactory;
 
     protected $guarded =[];

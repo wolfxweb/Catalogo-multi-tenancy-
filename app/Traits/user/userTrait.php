@@ -3,9 +3,14 @@ namespace  App\Traits\user;
 
 use App\Models\Pedido;
 use App\Models\User;
+use App\Tenant\ManagerTenant;
+use Illuminate\Support\Facades\DB;
 
 trait userTrait{
 
+    public function idTenantLogado(){
+        return app(ManagerTenant::class)->tenantId();
+    }
     public function userLogadoInfo(){
         $user = User::find(auth()->user()->id)->nivelAcesso;
         $userLogado =[
@@ -21,7 +26,6 @@ trait userTrait{
        $pedidos = Pedido::with('userPedidos')->get();
        return $pedidos;
     }
-
     public function userPedidosPaginadoAberto(){
        $pedidos = Pedido::with('userPedidos')->where('status','Aberto')->paginate(10);
        return $pedidos;
@@ -35,4 +39,11 @@ trait userTrait{
         $pedidos = Pedido::with('userPedidos')->whereDate($coluna,$informacao)->paginate(1000);
         return $pedidos;
      }
+    public function verificarSeExisteAdminCadastrado(){
+        $tenantId =  $this->idTenantLogado();
+        return DB::table('nive_acesso_users')->where('nivel_acesso','admin')->where('tenant_id',$tenantId)->count();
+    }
+    public function niverAcessoUsuarioLogado(){
+        return User::find(auth()->user()->id)->nivelAcesso->nivel_acesso;
+    }
 }
