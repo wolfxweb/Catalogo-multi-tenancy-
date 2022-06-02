@@ -62,6 +62,25 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Area cliente') }}</a>
                             </li>
                         @endnivelUsuarioLogado('cliente')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Pedidos') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('produto.index') }}">{{ __('Produto') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Serviços') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categoria.index') }}">{{ __('Categorias') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Colaboradores') }}</a>
+                        </li>
+                      
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Clientes') }}</a>
+                        </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

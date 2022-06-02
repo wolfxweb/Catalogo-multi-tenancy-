@@ -7,7 +7,7 @@
 
 @component('components.main', [
     'classCard' => 'col-sm-12',
-    'color' => 'bg-danger
+    'color' => 'bg-primary
     text-white',
     'titulo' => 'Edição Produto',
     ])
