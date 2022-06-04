@@ -29,6 +29,10 @@
                 <nav class="navbar navbar-light bg-light ">
                     <div class="container-fluid">
 
+                        @tenantAdm
+                            @include('components.homeMaster')
+                        @endtenantAdm
+
                         @if(session()->has('cart'))
                         <button type="button" class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="bi bi-cart-plus"></i>
@@ -118,19 +122,19 @@
                             </div>
                         </div>
                         <!-- Modal Carrinho compra -->
-                        <form class="d-flex" action="{{ route('search')}}" method="POST">
-                            @csrf
-                            <input name="search" class="form-control me-2" type="" placeholder="Pesquisar produto"
-                                aria-label="Search">
-                            <button class="btn btn-success" type="submit">Localizar</button>
-                        </form>
+                        @tenant
+                            <form class="d-flex" action="{{ route('search')}}" method="POST">
+                                @csrf
+                                <input name="search" class="form-control me-2" type="" placeholder="Pesquisar produto"
+                                    aria-label="Search">
+                                <button class="btn btn-success" type="submit">Localizar</button>
+                            </form>
+                        @endtenant
                     </div>
                 </nav>
             </div>
             <div class="row">
-
                 @foreach ( $produtos as $produto )
-
                 <div class="col-sm-4 p-2 ">
                     <div class="card shadow-lg p-3 mb-5 bg-body rounded">
                         <img src="/public/image/{{$produto->img}}" class="card-img-top" alt="...">

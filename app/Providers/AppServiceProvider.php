@@ -42,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
             $nivelAUX =  $this->niverAcessoUsuarioLogado();
             return  $nivelAUX == $nivel;
         });
+     
+
 
 
     }

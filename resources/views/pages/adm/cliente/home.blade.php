@@ -1,4 +1,4 @@
 
 
 
-@include('components.cliente')
+@include('components.cliente',['titulo'=>'Area do cliente'])

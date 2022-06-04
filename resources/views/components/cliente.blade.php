@@ -1,4 +1,4 @@
-<div class="card-header bg-primary text-white">{{ __('Painel de controle Cliente') }}</div>
+<div class="card-header bg-primary text-white">{{ __($titulo) }}</div>
 
 <div class="card-body">
     <div class="container">

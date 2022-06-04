@@ -52,8 +52,11 @@ Route::post('/pedido', [App\Http\Controllers\PedidoController::class, 'store'])-
 //lista os pedidos do banco de dados
 Route::get('/pedido', [App\Http\Controllers\PedidoController::class, 'index'])->name('pedido.index');
 
-//filtrat pedido
+//filtrar pedido
 Route::post('/pedido-localizar', [App\Http\Controllers\PedidoController::class, 'localizarPedido'])->name('pedido.localizarPedido');
+
+//mostar todos os clientes do tenant
+Route::get('/clientes',[App\Http\Controllers\ClienteController::class,'listar'])->name('cliente.listar');
 
 
 //Grupo de rotas produto
