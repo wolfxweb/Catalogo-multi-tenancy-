@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+    
         Blade::if('tenantAdm', function(){
             $tenant = app(ManagerTenant::class);
             return $tenant->isDominioPrinicipal();

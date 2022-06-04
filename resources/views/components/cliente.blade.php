@@ -39,6 +39,8 @@
                     </div>
                 </nav>
                 @foreach($pedidos as $key => $pedido)
+
+              
                 <div class="accordion accordion-flush " id="accordionPanelsStayOpenExample">
                     <div class="accordion-item  ">
                         <h2 class="accordion-header" id="panelsStayOpen-headingOne{{ $key }}">
@@ -67,9 +69,11 @@
                         <div id="panelsStayOpen-collapseOne{{ $key }}" class="accordion-collapse collapse  " aria-labelledby="panelsStayOpen-headingOne{{ $key }}">
                             <div class="accordion-body">
                                 <div> Detalhes do Pedido </div>
-
                                 @php
-                                $pedidoItems = json_decode($pedido->items);
+                                 ///var_dump(json_decode($pedido->items))
+                                 @endphp
+                                @php
+                                  $pedidoItems = json_decode($pedido->items);
                                 @endphp
                                 <table class="table table-striped table-hover">
                                     <thead>
@@ -88,7 +92,7 @@
                                             <td> {{ $pedidoItem->nome }}</td>
                                             <td> {{ $pedidoItem->qtd }}</td>
                                             <td> {{ $pedidoItem->preco }}</td>
-                                            <td> {{ number_format(floatval($pedidoItem->preco )*floatval($pedidoItem->qtd),2,',','.')}}</td>
+                                            <td> {{ number_format(floatval($pedidoItem->preco ) * floatval($pedidoItem->qtd),2,',','.')}}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

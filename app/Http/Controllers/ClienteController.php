@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
     public function listar(){
-
-
         $clientes = User::all();
         return view('pages.cliente.lista',compact('clientes'));
-
     }
 }

@@ -9,10 +9,10 @@
                   @include('pages.adm.cliente.home')
                 @endnivelUsuarioLogado
                 @nivelUsuarioLogado('admin')
-                      @include('pages.adm.loja.home')
+                  @include('pages.adm.loja.home')
                 @endnivelUsuarioLogado
                 @nivelUsuarioLogado('master')
-                 @include('pages.adm.adm.home')
+                  @include('pages.adm.adm.home')
                 @endnivelUsuarioLogado
             </div>
         </div>

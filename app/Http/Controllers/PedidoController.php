@@ -47,7 +47,7 @@ class PedidoController extends Controller
     $filtro = $request->all();
     $statusArray = [2,3];
     $data = [5];
-  // dd( $filtro);
+
     if (empty($filtro['selLocalizar'])) {
       return redirect('/home')->with('status', 'Selecione o tipo de filtro para poder realizar pesquisa. ')->with('classAlerta', 'alert-warning  text-dark');
     }
@@ -84,7 +84,7 @@ class PedidoController extends Controller
         break;
       default:
       return redirect('/home')->with('status', 'Termo pesquisado não existe')->with('classAlerta', 'alert-warning  text-dark');
-        break;
+      break;
     }
   }
 }

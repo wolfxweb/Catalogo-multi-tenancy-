@@ -17,7 +17,6 @@
                 @endslot
                 @slot('tbody')
                     @foreach ($clientes as $cliente)
-                    
                         <tr>
                             <th scope="col">{{ $cliente->id}}</th>
                             <th scope="col">{{ $cliente->name }}</th>

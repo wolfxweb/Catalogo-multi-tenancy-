@@ -32,13 +32,13 @@ trait userTrait{
     }
 
     public function userPedidosFiltros($coluna, $informacao, $date = false){
-        $pedidos = Pedido::with('userPedidos')->where($coluna,$informacao)->paginate(1000);
+        $pedidos = Pedido::with('userPedidos')->where($coluna,$informacao)->paginate(100);
         return $pedidos;
      }
     public function userPedidosFiltrosData($coluna, $informacao){
-        $pedidos = Pedido::with('userPedidos')->whereDate($coluna,$informacao)->paginate(1000);
+        $pedidos = Pedido::with('userPedidos')->whereDate($coluna,$informacao)->paginate(100);
         return $pedidos;
-     }
+    }
     public function verificarSeExisteAdminCadastrado(){
         $tenantId =  $this->idTenantLogado();
         return DB::table('nive_acesso_users')->where('nivel_acesso','admin')->where('tenant_id',$tenantId)->count();
