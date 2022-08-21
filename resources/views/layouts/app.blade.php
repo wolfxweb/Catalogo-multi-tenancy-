@@ -81,6 +81,12 @@
                                         <a class="nav-link"
                                             href="{{ route('cliente.listar') }}">{{ __('Clientes') }}</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"  href="{{ route('atendente.index') }}">{{ __('Atendentes') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"  href="{{ route('agenda.index') }}">{{ __('Agendas') }}</a>
+                                    </li>
                                 @endnivelUsuarioLogado
 
                                 <li class="nav-item dropdown">
