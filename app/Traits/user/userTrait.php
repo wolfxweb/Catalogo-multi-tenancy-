@@ -46,4 +46,11 @@ trait userTrait{
     public function niverAcessoUsuarioLogado(){
         return User::find(auth()->user()->id)->nivelAcesso->nivel_acesso;
     }
+    public function listarTodosOsUsuariosDoTenant(){
+       
+       return DB::table('users')
+                ->join('nive_acesso_users','users.id','=','nive_acesso_users.users_id')
+                ->where('users.tenant_id',$this->idTenantLogado())
+                ->get();
+    }
 }
