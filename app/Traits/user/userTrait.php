@@ -41,7 +41,7 @@ trait userTrait{
     }
     public function verificarSeExisteAdminCadastrado(){
         $tenantId =  $this->idTenantLogado();
-        return DB::table('nive_acesso_users')->where('nivel_acesso','admin')->where('tenant_id',$tenantId)->count();
+        return DB::table('nive_acesso_users')->where('nivel_acesso','adminstrador')->where('tenant_id',$tenantId)->count();
     }
     public function niverAcessoUsuarioLogado(){
         return User::find(auth()->user()->id)->nivelAcesso->nivel_acesso;

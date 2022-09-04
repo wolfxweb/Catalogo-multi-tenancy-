@@ -43,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
         });
         Blade::if('nivelUsuarioLogado', function($nivel = "cliente"){
             $nivelAUX =  $this->niverAcessoUsuarioLogado();
+           // var_dump($nivelAUX);
             return  $nivelAUX == $nivel;
         });
      

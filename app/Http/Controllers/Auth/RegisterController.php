@@ -73,7 +73,7 @@ class RegisterController extends Controller
         $nivelAcesso = 'cliente';
         $userAdmin = $this->verificarSeExisteAdminCadastrado();
         if( $userAdmin <1){
-            $nivelAcesso ='admin';
+            $nivelAcesso ='adminstrador';
         }
         $userCriado = User::create([
             'name' => $data['name'],

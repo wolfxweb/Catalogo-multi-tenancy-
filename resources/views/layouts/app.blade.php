@@ -66,7 +66,7 @@
                                         <a class="nav-link" href="{{ route('home') }}">{{ __('Area cliente') }}</a>
                                     </li>
                                 @endnivelUsuarioLogado
-                                @nivelUsuarioLogado('admin')
+                                @nivelUsuarioLogado('adminstrador')
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('home') }}">{{ __('Pedidos') }}</a>
                                     </li>
@@ -88,7 +88,14 @@
                                         <a class="nav-link"  href="{{ route('agenda.index') }}">{{ __('Agendas') }}</a>
                                     </li>
                                 @endnivelUsuarioLogado
-
+                                @nivelUsuarioLogado('atendente')
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/') }}">{{ __('Loja') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"  href="{{ route('agenda.index') }}">{{ __('Agenda') }}</a>
+                                    </li>
+                                @endnivelUsuarioLogado
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
